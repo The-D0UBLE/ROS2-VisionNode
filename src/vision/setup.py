@@ -15,8 +15,8 @@ setup(
     zip_safe=True,
     maintainer='araf',
     maintainer_email='araf@todo.todo',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Vision node for ROS2',
+    license='',
     extras_require={
         'test': [
             'pytest',
@@ -24,6 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'vision_node = vision.vision_node:main',
         ],
     },
 )
