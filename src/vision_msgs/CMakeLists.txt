@@ -18,8 +18,6 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   DEPENDENCIES builtin_interfaces sensor_msgs std_msgs
 )
 
-ament_python_install_package(vision_msgs)
-
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   set(ament_cmake_copyright_FOUND TRUE)
