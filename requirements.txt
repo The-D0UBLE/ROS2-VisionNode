@@ -1,0 +1,25 @@
+# PyTorch / TorchVision for Jetson (CUDA enabled)
+--extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v57
+torch==2.4.0
+torchvision==0.19.0
+
+# OpenCV (CPU, debug only)
+opencv-python==4.12.0.88
+
+# Ultralytics YOLO dependencies
+ultralytics==8.3.216
+thop==0.1.1-2209072238
+ultralytics-thop==2.0.17
+tqdm==4.67.1
+
+# Standard ML / data science
+numpy==2.2.6
+scipy==1.15.2
+matplotlib==3.10.7
+pandas==2.3.3
+seaborn==0.13.2
+
+# Utilities
+pyyaml==6.0.3
+requests==2.32.5
+
