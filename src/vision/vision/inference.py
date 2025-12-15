@@ -14,8 +14,8 @@ import colorsys
 import torch
 import numpy as np
 from ultralytics import YOLO
-from config import YOLO_MODEL_PATH, YOLO_IMGSZ, YOLO_CONF, YOLO_CLASS_NAMES, DEBUG_OVERLAY, TEST_IMG_FOLDER
-from realsense_camera import RealSenseCamera
+from vision.config import YOLO_MODEL_PATH, YOLO_IMGSZ, YOLO_CONF, YOLO_CLASS_NAMES, DEBUG_OVERLAY, TEST_IMG_FOLDER
+from vision.realsense_camera import RealSenseCamera
 
 
 def generate_distinct_colors(n):
