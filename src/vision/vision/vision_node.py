@@ -57,6 +57,9 @@ class VisionNode(Node):
         self.logging_enabled = msg.data
         self.get_logger().info(f"Logging enabled: {self.logging_enabled}")
 
+    def publish_state(self):
+        self.publisher.publish_status(self.state)
+
     # ------------------- Core Loop -------------------
     def capture_loop(self):
         """Main capture-inference-postprocess-publish loop"""
