@@ -17,7 +17,7 @@ import numpy as np
 import cv2
 import os
 from datetime import datetime
-from config import CAMERA_TARGET_SIZE, CAMERA_SAVE_FRAMES, CAMERA_OUTPUT_DIR
+from vision.config import CAMERA_TARGET_SIZE, CAMERA_SAVE_FRAMES, CAMERA_OUTPUT_DIR
 
 class RealSenseCamera:
     def __init__(self, target_size=CAMERA_TARGET_SIZE, save_frames=CAMERA_SAVE_FRAMES, output_dir=CAMERA_OUTPUT_DIR):
