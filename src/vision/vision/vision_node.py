@@ -10,11 +10,11 @@ vision_node.py
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Bool
-from realsense_camera import RealSenseCamera
-from inference import YOLOInference
-from postprocessor import PostProcessor
-from publisher import Publisher
-from watchdog import Watchdog
+from vision.realsense_camera import RealSenseCamera
+from vision.inference import YOLOInference
+from vision.postprocessor import PostProcessor
+from vision.publisher import Publisher
+from vision.watchdog import Watchdog
 from vision_msgs.msg import SegmentationOutput, VisionStatus
 
 class VisionNode(Node):
