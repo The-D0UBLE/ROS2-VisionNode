@@ -10,6 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(builtin_interfaces REQUIRED)
+find_package(rclpy REQUIRED)   # <-- Needed for Python message generation
 
 # Generate ROS2 messages
 rosidl_generate_interfaces(${PROJECT_NAME}
@@ -17,6 +18,9 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/VisionStatus.msg"
   DEPENDENCIES builtin_interfaces sensor_msgs std_msgs
 )
+
+# Export Python message runtime
+ament_export_dependencies(rosidl_default_runtime)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
