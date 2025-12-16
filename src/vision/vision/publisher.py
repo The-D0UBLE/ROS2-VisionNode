@@ -1,7 +1,7 @@
 # publisher.py
 import rclpy
 from rclpy.node import Node
-from vision_msgs.msg import SegmentationOutput, VisionStatus  
+from vision_msgs_py.msg import SegmentationOutput, VisionStatus  
 
 class Publisher:
     def __init__(self, node: Node):

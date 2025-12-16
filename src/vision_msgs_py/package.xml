@@ -1,0 +1,16 @@
+<package format="3">
+  <name>vision_msgs_py</name>
+  <version>0.0.0</version>
+  <description>Python wrapper for vision_msgs</description>
+  <maintainer email="you@example.com">araf</maintainer>
+  <license>Apache-2.0</license>
+
+  <depend>vision_msgs</depend>
+  <depend>rclpy</depend>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
