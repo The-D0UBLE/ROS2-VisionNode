@@ -83,7 +83,14 @@ class VisionNode(Node):
             # Any error triggers error state and watchdog intervention
             self.get_logger().error(f"Error during capture loop: {e}")
             self.state = "ERROR"
-            self.publisher.publish_status(self.state)
+            # Publish immediately and ensure the message is flushed
+            try:
+                self.publish_state()
+                # Process one spin cycle to flush outgoing messages
+                rclpy.spin_once(self, timeout_sec=0.01)
+            except Exception:
+                # Best-effort: if spinning here fails, we still keep the ERROR state
+                pass
 
 # ------------------- Entry Point -------------------
 def main(args=None):
