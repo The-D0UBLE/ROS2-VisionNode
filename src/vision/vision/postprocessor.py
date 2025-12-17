@@ -35,10 +35,10 @@ class PostProcessor:
         msg.scores = list(seg_data.get("scores", []))
 
         # For masks, you could convert boolean arrays to flattened lists
-        masks = seg_data.get("masks", [])
-        flattened_masks = []
-        for mask in masks:
-            flattened_masks.append(mask.astype(np.uint8).flatten().tolist())
-        msg.masks = flattened_masks
+        # masks = seg_data.get("masks", [])
+        # flattened_masks = []
+        # for mask in masks:
+        #     flattened_masks.append(mask.astype(np.uint8).flatten().tolist())
+        # msg.masks = flattened_masks
 
         return msg
