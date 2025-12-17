@@ -27,8 +27,8 @@ class PostProcessor:
         from rclpy.clock import Clock
         from rclpy.time import Time
         clock = Clock()
-        msg.header.stamp = clock.now().to_msg()
-        msg.header.frame_id = "camera_frame"
+        msg.stamp = clock.now().to_msg()
+        msg.frame_id = "camera_frame"
 
         # Fill in arrays
         msg.class_ids = list(seg_data.get("labels", []))
