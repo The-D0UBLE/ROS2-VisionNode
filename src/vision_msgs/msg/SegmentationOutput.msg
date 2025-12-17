@@ -10,4 +10,4 @@ float32[] scores
 float32[] boxes             # flattened [x1, y1, x2, y2, x1, y1, x2, y2 ...] per object
 
 # Optional: full masks
-sensor_msgs/Image[] masks   # one mask per object, optional
+# sensor_msgs/Image[] masks   # one mask per object, optional
