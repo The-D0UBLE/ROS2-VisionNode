@@ -9,7 +9,7 @@ print(f"file cwd: {os.getcwd()}")
 from vision_msgs.msg import SegmentationOutput
 from std_msgs.msg import Header
 import numpy as np
-import rospy  # only for header timestamp, optional in ROS2 we can use rclpy.time
+# import rospy  # only for header timestamp, optional in ROS2 we can use rclpy.time
 
 class PostProcessor:
     def __init__(self):
