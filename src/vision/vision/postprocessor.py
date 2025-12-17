@@ -5,9 +5,11 @@ postprocessor.py
 - Converts YOLOInference output into ROS2 SegmentationOutput messages
 """
 import sys 
+from os import path
 sys.path.append('../../')
-from vision_msgs.msg.SegmentationOutput import SegmentationOutput
-from std_msgs.VisionStatus import Header
+print(f"file cwd: {path.cwd()}")
+from vision_msgs.msg import SegmentationOutput
+from std_msgs.msg import Header
 import numpy as np
 import rospy  # only for header timestamp, optional in ROS2 we can use rclpy.time
 
