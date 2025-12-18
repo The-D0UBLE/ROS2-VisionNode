@@ -2,6 +2,7 @@ import os
 
 # ---------- Camera ----------
 CAMERA_TARGET_SIZE = (640, 640)
+HDR = False
 CAMERA_SAVE_FRAMES = False
 CAMERA_OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "captures")
 

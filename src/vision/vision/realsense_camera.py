@@ -17,7 +17,7 @@ import numpy as np
 import cv2
 import os
 from datetime import datetime
-from vision.config import CAMERA_TARGET_SIZE, CAMERA_SAVE_FRAMES, CAMERA_OUTPUT_DIR
+from vision.config import CAMERA_TARGET_SIZE, CAMERA_SAVE_FRAMES, CAMERA_OUTPUT_DIR, HDR
 
 class RealSenseCamera:
     def __init__(self, target_size=CAMERA_TARGET_SIZE, save_frames=CAMERA_SAVE_FRAMES, output_dir=CAMERA_OUTPUT_DIR):
@@ -41,7 +41,9 @@ class RealSenseCamera:
 
     def _preprocess(self, image: np.ndarray) -> np.ndarray:
         """HDR-like + stretch naar target_size"""
-        img = self._apply_hdr_like(image)
+        if HDR:
+            img = self._apply_hdr_like(image)
+        
         img = cv2.resize(img, self.target_size, interpolation=cv2.INTER_LINEAR)
         return img
 
