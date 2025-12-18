@@ -41,8 +41,9 @@ class RealSenseCamera:
 
     def _preprocess(self, image: np.ndarray) -> np.ndarray:
         """HDR-like + stretch naar target_size"""
+        img = image
         if HDR:
-            img = self._apply_hdr_like(image)
+            img = self._apply_hdr_like(img)
         
         img = cv2.resize(img, self.target_size, interpolation=cv2.INTER_LINEAR)
         return img
