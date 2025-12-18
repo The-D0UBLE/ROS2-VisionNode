@@ -21,7 +21,12 @@ def test_yolo_inference_on_test_images_real_model():
         pytest.skip(f"YOLO model not found at {YOLO_MODEL_PATH}")
 
     if not os.path.isdir(TEST_IMG_FOLDER):
-        pytest.skip(f"Test image folder not found: {TEST_IMG_FOLDER}")
+        # fallback to repo source testData if build-time path isn't populated
+        fallback = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "testData", "Images")
+        if os.path.isdir(fallback):
+            TEST_IMG_FOLDER = fallback
+        else:
+            pytest.skip(f"Test image folder not found: {TEST_IMG_FOLDER}")
 
     img_paths = [p for p in glob.glob(os.path.join(TEST_IMG_FOLDER, "*"))
                  if p.lower().endswith((".jpg", ".jpeg", ".png"))]
