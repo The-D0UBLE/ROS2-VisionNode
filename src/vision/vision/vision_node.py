@@ -30,7 +30,11 @@ class VisionNode(Node):
 
         # Initialize internal state
         self.state = "INITIALIZING"
-        self.publisher.publish_status(self.state)
+        # `substate` is used when `state` == "CAPTURING" to indicate progress
+        self.substate = None
+        # `prev_state` stores the previous full state (including substate) when an error occurs
+        self.prev_state = None
+        self.publish_state()
 
         # Try to initialize all components
         try:
@@ -38,11 +42,12 @@ class VisionNode(Node):
             self.infer = YOLOInference()
             self.postproc = PostProcessor()
             self.state = "CAPTURING"
+            self.substate = None
         except Exception as e:
             self.get_logger().error(f"Initialization failed: {e}")
             self.state = "ERROR"
 
-        self.publisher.publish_status(self.state)
+        self.publish_state()
 
         # Start watchdog to handle errors
         self.watchdog = Watchdog(self)
@@ -58,7 +63,8 @@ class VisionNode(Node):
         self.get_logger().info(f"Logging enabled: {self.logging_enabled}")
 
     def publish_state(self):
-        self.publisher.publish_status(self.state)
+        # Compose and publish the current status including any substate/prev info
+        self.publisher.publish_status(self.state, self.substate, self.prev_state)
 
     # ------------------- Core Loop -------------------
     def capture_loop(self):
@@ -67,21 +73,33 @@ class VisionNode(Node):
             return
 
         try:
-            # Capture frame from camera
+            # CAPTURING:CAM
+            self.substate = "CAM"
+            self.publish_state()
             frame = self.cam.capture()
 
-            # Run YOLO inference
+            # CAPTURING:INFERENCE
+            self.substate = "INFERENCE"
+            self.publish_state()
             seg_data = self.infer.infer(frame)
 
-            # Postprocess the results
+            # CAPTURING:POSTPROCESSING
+            self.substate = "POSTPROCESSING"
+            self.publish_state()
             processed_msg = self.postproc.process(seg_data)
 
-            # Publish segmentation
+            # done with this cycle, clear substate and publish segmentation
+            self.substate = None
+            self.publish_state()
             self.publisher.publish_segmentation(processed_msg)
 
         except Exception as e:
-            # Any error triggers error state and watchdog intervention
-            self.get_logger().error(f"Error during capture loop: {e}")
+            # Any error triggers error state; capture previous state for debugging
+            prev = f"{self.state}"
+            if self.substate:
+                prev = f"{prev}:{self.substate}"
+            self.prev_state = prev
+            self.get_logger().error(f"Error during capture loop: {e} (prev={self.prev_state})")
             self.state = "ERROR"
             # Publish immediately and ensure the message is flushed
             try:
@@ -89,7 +107,6 @@ class VisionNode(Node):
                 # Process one spin cycle to flush outgoing messages
                 rclpy.spin_once(self, timeout_sec=0.01)
             except Exception:
-                # Best-effort: if spinning here fails, we still keep the ERROR state
                 pass
 
 # ------------------- Entry Point -------------------

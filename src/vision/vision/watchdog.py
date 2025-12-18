@@ -18,6 +18,9 @@ class Watchdog(Thread):
                     self.vision_node.infer = self.vision_node.infer.__class__()  # Reinit YOLO
                     self.vision_node.postproc = self.vision_node.postproc.__class__()  # Reinit postprocessor
                     self.vision_node.state = "CAPTURING"
+                    # clear any capturing substates or previous-error state
+                    self.vision_node.substate = None
+                    self.vision_node.prev_state = None
                     self.vision_node.publish_state()
                     self.vision_node.get_logger().info("Reinitialization successful")
                 except Exception as e:

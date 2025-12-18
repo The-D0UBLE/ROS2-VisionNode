@@ -12,7 +12,21 @@ class Publisher:
     def publish_segmentation(self, seg_msg: SegmentationOutput):
         self.seg_pub.publish(seg_msg)
 
-    def publish_status(self, status: str):
+    def publish_status(self, status: str, substate: str = None, prev: str = None):
+        """Publish a readable status string.
+
+        If `substate` is provided it will be appended as `MAIN:SUB`.
+        If `prev` is provided it will be appended to ERROR messages so callers
+        can see where the error originated.
+        """
         status_msg = VisionStatus()
-        status_msg.data = status
+        if substate:
+            composed = f"{status}:{substate}"
+        else:
+            composed = status
+
+        if status == "ERROR" and prev:
+            composed = f"{composed} (prev={prev})"
+
+        status_msg.data = composed
         self.status_pub.publish(status_msg)
