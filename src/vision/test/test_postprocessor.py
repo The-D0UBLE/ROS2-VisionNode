@@ -48,9 +48,18 @@ def test_postprocessor_populates_fields(monkeypatch):
 
             return T()
 
+    # Also provide a rclpy.time module with a Time placeholder so imports succeed
+    time_mod = types.ModuleType("rclpy.time")
+
+    class DummyTime:
+        def __init__(self):
+            pass
+
     clock_mod.Clock = DummyClock
+    time_mod.Time = DummyTime
     sys.modules["rclpy"] = fake_rclpy
     sys.modules["rclpy.clock"] = clock_mod
+    sys.modules["rclpy.time"] = time_mod
 
     # Import the PostProcessor after injecting fakes
     from vision.postprocessor import PostProcessor

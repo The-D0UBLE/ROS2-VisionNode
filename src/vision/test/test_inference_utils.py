@@ -19,5 +19,5 @@ def test_draw_legend_draws_boxes():
     class_colors = {"a": np.array([10, 20, 30]), "b": np.array([40, 50, 60])}
     out = draw_legend(img, class_colors)
     # legend draws small colored rectangles at (10,10) size (20x20)
-    roi = out[10 : 10 + 20, 10 : 10 + 20]
+    roi = out[10:10 + 20, 10:10 + 20]
     assert roi.sum() > 0

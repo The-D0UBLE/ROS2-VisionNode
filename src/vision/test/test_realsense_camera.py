@@ -2,6 +2,7 @@ import sys
 import types
 import numpy as np
 
+
 def test_apply_hdr_and_preprocess():
     # Ensure importing the module doesn't fail if pyrealsense2 is absent
     fake_rs = types.ModuleType("pyrealsense2")
