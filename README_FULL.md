@@ -1,7 +1,5 @@
 # ROS2 Vision Node
 
-for english documentation see [README-EN.md](README-EN.md)
-
 Dit repository bevat een Python/ROS2-visionmodule voor het ophalen van beelden, uitvoeren van inferentie en publiceren van resultaten.
 
 Inhoud
