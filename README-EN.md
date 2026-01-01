@@ -5,7 +5,7 @@ This repository contains a Python/ROS2 vision module for capturing images, runni
 Contents
 - `src/vision` — main package with nodes, camera wrapper, inference and postprocessing.
 - `src/vision/test` — pytest tests.
-- `src/vision/vision/models` — (optional) model files such as `best.pt`.
+- `src/vision/vision/models` —  model files such as `best.pt`.
 
 Key features
 - Camera abstraction (RealSense wrapper).
@@ -21,19 +21,17 @@ git clone <repo-url>
 cd ROS2-VisionNode
 ```
 
-2. Create a Python environment and install dependencies:
+2. update ur Python environment and install dependencies:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
+
 pip install -r requirements.txt
-# Or for development install
-pip install -e src/vision
+
 ```
 
-3. (Optional) To run the ROS2 node inside a ROS2 workspace, build with `colcon` and source the workspace.
+3.  To run the ROS2 node inside a ROS2 workspace, build with `colcon` and source the workspace.
 
-Project structure (brief)
+Project structure
 - `src/vision/vision/vision_node.py` — main node / entrypoint.
 - `src/vision/vision/realsense_camera.py` — RealSense wrapper.
 - `src/vision/vision/inference.py` — inference logic.
@@ -46,19 +44,8 @@ Models and test data
 
 Tests
 - See the detailed testing instructions in [TESTING.md](TESTING.md).
-- Quick: run all tests with:
 
-```bash
-pytest -q
-```
-
-Running the ROS2 node (two options)
-- Direct (after `pip install -e src/vision`):
-
-```bash
-python -m vision.vision_node
-```
-
+Running the ROS2 node
 - As a ROS2 package (build and run via `colcon`):
 
 ```bash
@@ -70,13 +57,4 @@ ros2 run vision vision_node
 
 Getting started for development
 - Check `src/vision/vision/config.py` for paths and configuration variables.
-- Unit tests (`test_postprocessor.py`) are good examples for quick feedback.
 
-Model evaluation
-- For model accuracy and detailed evaluation, create a separate evaluation script or notebook; this is outside unit tests and not covered in this README.
-
-Contributing
-- Issues and pull requests welcome. Describe changes briefly and add tests where relevant.
-
-License
-- Add your license information here if applicable.
