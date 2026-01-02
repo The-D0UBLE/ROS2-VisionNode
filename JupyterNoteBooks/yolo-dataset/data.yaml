@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 8
+names: ['boat', 'dock', 'grass', 'reed', 'sky', 'tree', 'wall', 'water']
+
+roboflow:
+  workspace: labeling-ixq2s
+  project: oever-detectie-lkf4r
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/labeling-ixq2s/oever-detectie-lkf4r/dataset/2
