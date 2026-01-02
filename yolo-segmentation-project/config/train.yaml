@@ -1,0 +1,11 @@
+# Training configuration
+
+model: yolov8n-seg.pt
+data_yaml: data/yolo-dataset/data.yaml
+run_name: baseline_run
+
+training:
+  epochs: 70
+  imgsz: 640
+  batch: 32
+  workers: 2
