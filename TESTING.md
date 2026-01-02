@@ -1,40 +1,46 @@
-# Geautomatiseerd testen
+# Automated Testing
 
-Waar staan de tests
-- De tests zitten in de map `src/vision/test`.
-  - `src/vision/test/test_inference_model.py` — integratie/inferentietest (vereist model + afbeeldingen).
-  - `src/vision/test/test_postprocessor.py` — unit-tests voor postprocessing-logica.
-  - `src/vision/test/test_realsense_camera.py` — tests voor de camera-wrapper (kan hardware-afhankelijk zijn).
+## Test Locations
 
-Wat betekenen de tests 
-- Integratie-/inference-test (`test_inference_model.py`): controleert dat het model en de inferentie-pijplijn werken samen; vereist vaak het modelbestand en testbeelden.
-- Camera-tests: verifiëren dat de camera-wrapper (of mock) correct werkt; kan ge-skip worden als hardware ontbreekt.
+* Tests are located in the `src/vision/test` directory:
 
-Hoe je de tests lokaal runt
-- Vanuit de projectroot (waar `pytest.ini` staat) run je alle tests met:
+  * `src/vision/test/test_inference_model.py` — integration/inference test (requires model + images).
+  * `src/vision/test/test_postprocessor.py` — unit tests for postprocessing logic.
+  * `src/vision/test/test_realsense_camera.py` — tests for the camera wrapper (may be hardware-dependent).
+
+## Test Descriptions
+
+* **Integration / Inference Test (`test_inference_model.py`)**: verifies that the model and inference pipeline work together; often requires the model file and test images.
+* **Camera Tests**: check that the camera wrapper (or mock) works correctly; can be skipped if hardware is unavailable.
+
+## Running Tests Locally
+
+* From the project root (where `pytest.ini` is located), run all tests with:
 
 ```bash
 pytest -q
 ```
 
-- Alleen één testbestand:
+* Run only a single test file:
 
 ```bash
 pytest -q src/vision/test/test_inference_model.py
 ```
 
-- Alleen tests met een naam/substring:
+* Run tests matching a name or substring:
 
 ```bash
-pytest -q -k "substring_van_testnaam"
+pytest -q -k "substring_of_test_name"
 ```
 
-- Stop bij de eerste fout:
+* Stop at the first failure:
 
 ```bash
 pytest -x
 ```
 
-Tips voor inference-tests
-- Integratie-tests hebben vaak een modelbestand nodig, bijvoorbeeld `src/vision/vision/models/best.pt` en testafbeeldingen in `src/vision/testData/Images`.
-- Als die bestanden ontbreken, kunnen tests worden overgeslagen (skip) of gemockt.
+## Tips for Inference Tests
+
+* Integration tests often require a model file, e.g., `src/vision/vision/models/best.pt`, and test images in `src/vision/testData/Images`.
+* If these files are missing, tests can be skipped or mocked.
+

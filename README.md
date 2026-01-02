@@ -1,60 +1,61 @@
 # ROS2 Vision Node
 
-for english documentation see [README-EN.md](README-EN.md)
+This repository contains a Python/ROS2 vision module for capturing images, running inference, and publishing results.
 
-Dit repository bevat een Python/ROS2-visionmodule voor het ophalen van beelden, uitvoeren van inferentie en publiceren van resultaten.
+Contents
+- `src/vision` — main package with nodes, camera wrapper, inference and postprocessing.
+- `src/vision/test` — pytest tests.
+- `src/vision/vision/models` —  model files such as `best.pt`.
 
-Inhoud
-- `src/vision` — belangrijkste package met nodes, camera-wrapper, inferentie en postprocessing.
-- `src/vision/test` — pytest-tests.
-- `src/vision/vision/models` —  modelbestanden bijv `best.pt`.
+Key features
+- Camera abstraction (RealSense wrapper).
+- YOLO inference + postprocessing.
+- ROS2-compatible publisher for segmentation and vision status messages.
 
-Belangrijkste features
-- Camera-abstractie (RealSense wrapper).
-- YOLO-inferentie + postprocessing.
-- ROS2-compatible publisher voor segmentatie/vision status messages.
+Quick start
 
-Snelstart
-
-1. Clone de repository:
+1. Clone the repository:
 
 ```bash
 git clone <repo-url>
 cd ROS2-VisionNode
 ```
 
-2. Maak een update je Python omgeving en installeer afhankelijkheden:
+2. update ur Python environment and install dependencies:
 
 ```bash
 
 pip install -r requirements.txt
+
 ```
 
-3. (Optioneel) Als je de ROS2-node wilt draaien binnen een ROS2-workspace, bouw met `colcon` en source je workspace.
+3.  To run the ROS2 node inside a ROS2 workspace, build with `colcon` and source the workspace.
 
-Projectstructuur (kort)
-- `src/vision/vision/vision_node.py` — hoofd-node / entrypoint.
+Project structure
+- `src/vision/vision/vision_node.py` — main node / entrypoint.
 - `src/vision/vision/realsense_camera.py` — RealSense wrapper.
-- `src/vision/vision/inference.py` — inferentielogica.
-- `src/vision/vision/postprocessor.py` — postprocessing van modeloutput.
-- `src/vision/test` — tests: unit + integratie.
+- `src/vision/vision/inference.py` — inference logic.
+- `src/vision/vision/postprocessor.py` — postprocessing of model output.
+- `src/vision/test` — tests: unit + integration.
 
-Modellen en testdata
-- Plaats modelbestanden in `src/vision/vision/models/` (bijv. `best.pt`).
-- Testafbeeldingen worden verwacht in `src/vision/testData/Images` voor integratietests.
+Models and test data
+- Place model files in `src/vision/vision/models/` (e.g. `best.pt`).
+- Test images are expected in `src/vision/testData/Images` for integration tests.
 
 Tests
-- Zie de uitgebreide testinstructies in [TESTING.md](TESTING.md).
+- See the detailed testing instructions in [TESTING.md](TESTING.md).
 
-Run de ROS2-node
-- Als ROS2-package (bouw en run via `colcon`):
+Running the ROS2 node
+- As a ROS2 package (build and run via `colcon`):
 
 ```bash
-# bouw je workspace met colcon, source de install space
+# build your workspace with colcon, source the install space
 colcon build
 source install/setup.bash
 ros2 run vision vision_node
 ```
 
-Waar te beginnen voor ontwikkeling
-- Bekijk `src/vision/vision/config.py` voor paden en configuratievariabelen.
+Getting started for development
+- Check `src/vision/vision/config.py` for paths and configuration variables.
+
+
